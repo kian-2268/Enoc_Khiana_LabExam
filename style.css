@@ -1,0 +1,433 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+}
+
+/* PAGE TRANSITION */
+.page-transition {
+    animation: pageSwitch 0.5s ease-in-out;
+}
+
+@keyframes pageSwitch {
+    0% {
+        opacity: 0;
+        transform: scale(0.98);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* TRANSITION WRAPPER */
+.auth-wrapper {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.auth-container {
+    position: absolute;
+    width: 100%;
+    min-height: 100vh;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.auth-container.login-active {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    pointer-events: all;
+}
+
+.auth-container.login-hidden {
+    opacity: 0;
+    transform: translateX(-100%) scale(0.95);
+    pointer-events: none;
+}
+
+.auth-container.register-active {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    pointer-events: all;
+}
+
+.auth-container.register-hidden {
+    opacity: 0;
+    transform: translateX(100%) scale(0.95);
+    pointer-events: none;
+}
+
+/* LEFT SECTION (Login Page) */
+.left-section {
+    background: linear-gradient(to bottom, #ffffff 40%, #ffd500 100%);
+    position: relative;
+    animation: slideLeft 1s ease-in-out;
+}
+
+.small-text {
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.title {
+    font-weight: 900;
+    font-size: 42px;
+}
+
+.logo {
+    width: 150px;
+    animation: float 3s ease-in-out infinite;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* Accurate SVG Curve */
+.curve {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 200px;
+    height: 100%;
+    fill: black;
+    transition: all 0.5s ease;
+}
+
+/* RIGHT SECTION (Login Page) */
+.right-section {
+    background: #f3e26d;
+    animation: slideRight 1s ease-in-out;
+}
+
+.login-box {
+    width: 100%;
+    max-width: 350px;
+    animation: fadeUp 1s ease-in-out;
+    text-align: center;
+}
+
+.login-box form {
+    text-align: left;
+}
+
+.welcome {
+    font-weight: 900;
+}
+
+.custom-input {
+    border-radius: 30px;
+    background: #eaeaea;
+    padding: 12px 20px;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.custom-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+}
+
+.login-btn {
+    border-radius: 30px;
+    background: black;
+    color: white;
+    font-weight: bold;
+    padding: 12px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.login-btn:hover {
+    background: #333;
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.login-btn:active {
+    transform: scale(0.98);
+}
+
+.login-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.login-btn:active::after {
+    width: 300px;
+    height: 300px;
+}
+
+.register-text a {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.register-text a:hover {
+    color: #333;
+    letter-spacing: 1px;
+}
+
+.register-text a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: black;
+    transition: width 0.3s ease;
+}
+
+.register-text a:hover::after {
+    width: 100%;
+}
+
+.register-text {
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* ===== REGISTER PAGE STYLES (UPDATED TO MATCH LOGIN TEXT SIZES) ===== */
+.register-container {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+}
+
+/* LEFT: Form side (mirrors login's right section style) */
+.reg-left-section {
+    flex: 1;
+    background: #f3e26d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    animation: slideLeft 1s ease-in-out;
+}
+
+.register-box {
+    width: 100%;
+    max-width: 350px;
+    animation: fadeUp 1s ease-in-out;
+    text-align: center;
+}
+
+/* Updated text styles to match login exactly */
+.register-box .welcome {
+    font-weight: 900;        /* Match login .title */
+    font-size: 42px;         /* Match login .title */
+    line-height: 1.2;
+    margin-bottom: 10px;
+    color: #000;
+}
+
+.register-box .small-text {
+    font-weight: 400;        /* Normal weight */
+    font-size: 14px;         /* Match login .small-text */
+    letter-spacing: 1px;     /* Match login .small-text */
+    color: #000;
+    margin-bottom: 25px;
+}
+
+.register-box form {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin: 20px 0;
+}
+
+.register-box .custom-input {
+    width: 100%;
+    display: block;
+    font-weight: 400;
+    font-size: 14px;         /* Match login input text */
+    color: #333;
+}
+
+.register-box .custom-input::placeholder {
+    font-weight: 400;
+    font-size: 14px;         /* Match login placeholder */
+    color: #999;
+    opacity: 1;
+}
+
+.register-btn {
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;         /* Match login button text */
+    font-weight: bold;
+    letter-spacing: 1px;
+    border-radius: 30px;
+    background: black;
+    color: white;
+    padding: 12px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    margin-top: 6px;
+}
+
+.register-btn:hover {
+    background: #333;
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.register-btn:active {
+    transform: scale(0.98);
+}
+
+.register-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.register-btn:active::after {
+    width: 300px;
+    height: 300px;
+}
+
+.login-text {
+    text-align: center;
+    font-size: 14px;         /* Match login text size */
+    font-weight: 400;
+    color: #000;
+    margin-top: 12px;
+}
+
+.login-text a {
+    font-weight: bold;
+    font-size: 14px;         /* Match login link size */
+    text-decoration: none;
+    color: black;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.login-text a:hover {
+    color: #333;
+    letter-spacing: 1px;
+}
+
+.login-text a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: black;
+    transition: width 0.3s ease;
+}
+
+.login-text a:hover::after {
+    width: 100%;
+}
+
+.message {
+    margin-top: 14px;
+    font-size: 14px;         /* Match login message size */
+    font-weight: 400;
+    text-align: center;
+    color: #333;
+}
+
+/* RIGHT: Gradient side (mirrors login's left section style) */
+.reg-right-section {
+    flex: 1;
+    background: linear-gradient(to bottom, #ffffff 40%, #ffd500 100%);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: slideRight 1s ease-in-out;
+}
+
+/* SVG Curve on the LEFT edge of the right panel */
+.reg-curve {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 200px;
+    height: 100%;
+}
+
+/* Two logos stacked vertically */
+.reg-logo-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    z-index: 1;
+}
+
+.reg-logo-wrap .logo {
+    width: 150px;
+    animation: float 3s ease-in-out infinite;
+    transition: transform 0.3s ease;
+}
+
+.reg-logo-wrap .logo:nth-child(2) {
+    animation-delay: 1.5s;
+}
+
+.reg-logo-wrap .logo:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* Animations */
+@keyframes slideLeft {
+    from { opacity: 0; transform: translateX(-40px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideRight {
+    from { opacity: 0; transform: translateX(40px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-12px); }
+}
